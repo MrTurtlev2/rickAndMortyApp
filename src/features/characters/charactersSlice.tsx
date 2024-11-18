@@ -19,9 +19,8 @@ export const charactersSlice = createSlice({
                 state.fetchMovieStatus = 'pending';
             })
             .addCase(getAllCharactersAsync.fulfilled, (state, action) => {
-                state.characters = action.payload.results;
+                state.characters = [...state.characters, ...action.payload.results];
                 state.info = action.payload.info;
-                console.log(action.payload);
                 state.fetchMovieStatus = 'fulfilled';
             })
             .addCase(getAllCharactersAsync.rejected, (state) => {

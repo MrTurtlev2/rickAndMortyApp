@@ -1,24 +1,15 @@
-import {Button, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
-import {styles} from './CharacterList.styled';
+import {Button, View} from 'react-native';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {CharacterListStackNavigationProp} from '../../CharacterList.routes';
-import {getAllCharactersAsync} from '../../../../services/charactersService';
-import {useDispatch} from 'react-redux';
-import {useAppSelector} from '../../../../configs/store';
-import {selectCharacters} from '../../../../features/characters/charactersSlice';
+import CharactersList from '../../../../components/CharactersList';
 
 const CharacterListScreen = () => {
     const {navigate} = useNavigation<CharacterListStackNavigationProp>();
-    const charactersArray = useAppSelector(selectCharacters);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllCharactersAsync());
-    }, [dispatch]);
 
     return (
-        <View style={styles.container}>
-            <Text>Implement CharactersListScreen</Text>
+        <View style={{flex: 1}}>
+            <CharactersList/>
             <Button
                 title="Navigate to Details screen"
                 onPress={(): void => {
